@@ -5,17 +5,6 @@ const dbMain = require("./model")
 const router = express.Router()
 
 
-router.get("/projects", async (req,res)=> {
-    
-    try {
-        return res.status(200).json(await dbMain.getAllProjects())
-    }
-    catch{
-        res.status(500).json({ message: `ERROR 500, fail to get PROJECT LIST` })
-    }
-
-})
-
 router.get("/tasks", async (req,res)=> {
     
     try {

@@ -24,7 +24,7 @@ function logger(req, res, next) {
 }
 
 server.use("/api", mainRouter)
-// // server.use("/api/projects", projectsRouter)
+server.use("/api/projects", projectsRouter)
 // server.use("/api/projects/:projectId/tasks", passProjectId, tasksRouter)
 // server.use("/api/projects/:projectId/resources", passProjectId, resourcesRouter)
 
