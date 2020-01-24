@@ -4,6 +4,9 @@ const db = require("./model")
 
 const router = express.Router()
 
+
+//**ROUTER ** *//
+
 router.get("/", async (req,res)=> {
     
     try {
@@ -27,7 +30,7 @@ router.get("/:id", validateId, async (req ,res)=> {
 })
 
 router.post("/", validateRequest, async (req ,res)=> {
-    console.log(req.body)
+
     try {
         return res.status(201).json(await db.postNewProject(req.body))
     }
@@ -37,8 +40,7 @@ router.post("/", validateRequest, async (req ,res)=> {
 
 })
 
-
-
+//** MIDDLEWARE ** *//
 
 async function validateId(req, res, next){
     const project = await db.getProjectById(req.params.id)
@@ -62,5 +64,7 @@ function validateRequest(req, res, next){
         next()
       }
 }
+
+
 
 module.exports = router
