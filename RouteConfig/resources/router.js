@@ -14,7 +14,7 @@ router.get("/", validateProjectId, async (req,res)=> {
         return res.status(200).json(await db.getResourceByPId(req.projectId))
     }
     catch{
-        res.status(500).json({ message: `ERROR 500, fail to get PROJECT LIST` })
+        res.status(500).json({ message: `ERROR 500, fail to get RESOURCES for Project ${req.projectId}` })
     }
 
 })
