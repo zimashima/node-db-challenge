@@ -6,7 +6,7 @@ module.exports = {
     postNewProject
 }
 
-function getAllProjects(){
+async function getAllProjects(){
     return db("projects")
 }
 
