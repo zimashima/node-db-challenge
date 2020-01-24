@@ -40,13 +40,34 @@ router.post("/", validateRequest, async (req ,res)=> {
 
 })
 
+router.put("/:id", validateId, validateRequest, async (req ,res)=> {
+    console.log(req.body)
+    try {
+        return res.status(200).json(await db.updateProject(req.project.id, req.body))
+    }
+    catch{
+        res.status(500).json({ message: `ERROR 500, fail to UPDATE project` })
+    }
+
+})
+
+router.delete("/:id", validateId, validateRequest, async (req ,res)=> {
+
+    try {
+        return res.status(200).json(await db.deleteProject(req.project.id))
+    }
+    catch{
+        res.status(500).json({ message: `ERROR 500, fail to delete PROJECT LIST` })
+    }
+
+})
+
 //** MIDDLEWARE ** *//
 
 async function validateId(req, res, next){
     const project = await db.getProjectById(req.params.id)
     if (project){
         req.project = project
-        console.log(req.project)
       next()
     } else {
       res.status(404).json({ message: "ID not found, please provide a valid Project ID" })

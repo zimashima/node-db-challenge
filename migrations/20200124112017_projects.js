@@ -5,14 +5,14 @@ exports.up = async function(knex) {
         tbl.increments("id")
         tbl.string("name").notNullable()
         tbl.string("description").notNullable()
-        tbl.boolean("completed").notNullable().defaultTo(false)
+        tbl.boolean("completed").notNullable().defaultTo(Number("0"))
     })
 
     await knex.schema.createTable("tasks", tbl => {
         tbl.increments("id")
         tbl.string("description").notNullable()
         tbl.string("notes").notNullable()
-        tbl.boolean("completed").notNullable().defaultTo(false)
+        tbl.boolean("completed").notNullable().defaultTo(Number("0"))
         tbl.integer("projectId").unsigned().notNullable().references("id").inTable("projects")
     })
 
